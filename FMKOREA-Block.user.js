@@ -1070,6 +1070,34 @@
                     }
                 });
 
+                $("ul.mpReset li").each(function(i,v){
+                    try {
+                        var $v = $(v);
+                        var $category = undefined;
+                        var $boardA = undefined;
+                        var categoryText = "";
+                        var pathname = $v.attr("href");
+                        var $title = $v.find("a.title");
+                        var title = $title.get(0).innerText;
+                        
+                        var input = {
+                            "pathname" : pathname,
+                            "$v" : $v,
+                            "$title" : $title,
+                            "title" : title,
+                            "$boardA" : $boardA,
+                            "$category" : $category,
+                            "categoryText" : categoryText,
+                            "isBest" : isBest
+                        };
+                        console.log(input);
+                        return control(input);
+                    }
+                    catch(e){
+                        return true;
+                    }
+                });
+
                 // 각 게시판 star 우측에 X 버튼 달기
                 $("h1 a.star").each(function(i,v){
                     var $v = $(v).first();

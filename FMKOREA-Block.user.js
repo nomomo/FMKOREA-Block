@@ -1062,7 +1062,6 @@
                             "categoryText" : categoryText,
                             "isBest" : isBest
                         };
-                        console.log(input);
                         return control(input);
                     }
                     catch(e){
@@ -1070,6 +1069,7 @@
                     }
                 });
 
+                // 주간 포텐, 월간 포텐
                 $("ul.mpReset li").each(function(i,v){
                     try {
                         var $v = $(v);
@@ -1090,7 +1090,6 @@
                             "categoryText" : categoryText,
                             "isBest" : isBest
                         };
-                        console.log(input);
                         return control(input);
                     }
                     catch(e){

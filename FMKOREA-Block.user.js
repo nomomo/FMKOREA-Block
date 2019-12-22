@@ -943,7 +943,7 @@
 
         // 1. 카테고리 리스트에서 체크
         var board = String(pathname).replace("/", "");
-        if(isBest && isBlock(board)){
+        if(GM_SETTINGS.boardBlock && isBest && isBlock(board)){
             if(GM_SETTINGS.debug){
                 $v.addClass("border_red_important");
             }

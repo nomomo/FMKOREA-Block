@@ -21,7 +21,7 @@ FMKOREA-Block 의 설치 방법을 설명합니다.
 
 유저스크립트 관리 확장기능 설치가 완료되었다면, 아래 링크를 클릭한 후 뜨는 창에서 설치 버튼을 누릅니다.
 
-- [https://github.com/nomomo/Naver-Cafe-Twitch-Clip-Loader/raw/master/FMKOREA-Block.user.js](https://github.com/nomomo/Naver-Cafe-Twitch-Clip-Loader/raw/master/FMKOREA-Block.user.js)
+- [https://raw.githubusercontent.com/nomomo/FMKOREA-Block/master/FMKOREA-Block.user.js](https://raw.githubusercontent.com/nomomo/FMKOREA-Block/master/FMKOREA-Block.user.js)
 
 이것으로 설치는 끝입니다. 즐겁게 사용하세요~
 

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        FMKOREA-Block
 // @namespace   FMKOREA-Block
-// @version     0.1.0
+// @version     0.1.1
 // @description FM Korea의 포텐글을 필터링하여 표시해주는 UserScript
 // @author      NOMO
 // @match       https://www.fmkorea.com/*
@@ -771,13 +771,13 @@
         if(blockTextObjUserCode[code].nick !== nick){
             if(GM_SETTINGS.debug){
                 console.log(`Nick 변경 감지됨. old: ${blockTextObjUserCode[code].nick}, new: ${nick}`);
-                for(var i=0;i<GM_SETTINGS.blockTextArrayUserCode.length;i++){
-                    if(GM_SETTINGS.blockTextArrayUserCode[i][0] === code){
-                        GM_SETTINGS.blockTextArrayUserCode[i][1] = nick;
-                    }
-                }
-                await GM_setting.save();
             }
+            for(var i=0;i<GM_SETTINGS.blockTextArrayUserCode.length;i++){
+                if(GM_SETTINGS.blockTextArrayUserCode[i][0] === code){
+                    GM_SETTINGS.blockTextArrayUserCode[i][1] = nick;
+                }
+            }
+            await GM_setting.save();
         }
     }
 

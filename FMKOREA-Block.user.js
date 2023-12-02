@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        FMKOREA-Block
 // @namespace   FMKOREA-Block
-// @version     0.1.1
+// @version     0.1.2
 // @description FM Korea의 포텐글을 필터링하여 표시해주는 UserScript
 // @author      NOMO
 // @match       https://www.fmkorea.com/*
@@ -830,10 +830,13 @@
             $elem.addClass("fired");
 
             setTimeout(function(){
-                for(var code in blockTextObjUserCode){
-                    var $members = $elem.find(`.onlylevel_${code}`);
+                for(let code in blockTextObjUserCode){
+                    // 글 보기 화면에서 닉네임 우측
+                    let $members = $elem.find(`.member_${code}`);
+                    if($members.length == 0) {
+                        $members = $elem.find(`.onlylevel_${code}`);
+                    }
                     if($members.length == 0) continue;
-
                     appendMemo($members, code, 1);
                 }
             },1);
@@ -846,8 +849,8 @@
             $elem.addClass("fired");
 
             setTimeout(function(){
-                for(var code in blockTextObjUserCode){
-                    var $members = $elem.find(`.member_${code}`);
+                for(let code in blockTextObjUserCode){
+                    let $members = $elem.find(`.member_${code}`);
                     if($members.length == 0) continue;
     
                     appendMemo($members, code, 0);

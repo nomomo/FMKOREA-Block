@@ -32,6 +32,10 @@ FMKOREA-Block 의 설치 방법을 설명합니다.
 
 ## Change Logs
 
+### 0.1.2 - Dec. 02, 2023
+
+- 글 보기 화면에서 글 작성자 닉네임 우측에 메모 내용이 표시되지 않는 문제 수정
+
 ### 0.1.1 - Dec. 01, 2022
 
 - 메모된 유저의 닉네임이 변경되었을 때 설정 창에 변경된 닉네임이 반영되지 않는 문제 수정
@@ -48,4 +52,4 @@ FMKOREA-Block 의 설치 방법을 설명합니다.
 
 ## Happy??
 
-<a href="https://www.buymeacoffee.com/nomomo" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="60"></a>　<a href="https://toon.at/donate/636947867320352181" target="_blank"><img src="https://raw.githubusercontent.com/nomomo/Addostream/master/assets/toonation_b11.gif" height="60" alt="Donate with Toonation" /></a>
+<a href="https://www.buymeacoffee.com/nomomo" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="60"></a>

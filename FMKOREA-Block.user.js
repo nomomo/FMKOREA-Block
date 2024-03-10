@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        FMKOREA-Block
 // @namespace   FMKOREA-Block
-// @version     0.1.2
+// @version     0.1.3
 // @description FM Korea의 포텐글을 필터링하여 표시해주는 UserScript
 // @author      NOMO
 // @match       https://www.fmkorea.com/*
@@ -129,6 +129,15 @@
             title: "차단 키워드",
             desc: "콤마로 구분",
             placeholder: "고양이, 떼껄룩, [스타리그], 스카이스포츠"
+        },
+        kk: {
+            category: "others",
+            category_name: "Others",
+            depth: 1,
+            type: "checkbox",
+            value: true,
+            title: "포텐 터진 게시판에서 크킹을 강조",
+            desc: "크킹 카테고리의 경우 제목에 [크킹]을 포함시킵니다"
         },
         boardBlockUserCode: {
             category: "user",
@@ -512,14 +521,26 @@
         if(type == 0){
             confirmed = prompt(`UserCode: ${MemberCode}, Nick: ${Nick} 에 대해 메모 내용을 추가하세요`, prevmemo);
             if(confirmed !== null){
-                if(userIndex === -1){
-                    GM_SETTINGS.blockTextArrayUserCode.push([MemberCode, Nick, confirmed, String(prevblock)]);
+                if(confirmed === "" && !prevblock){
+                    if(userIndex === -1){
+                        //alert("취소 됨");
+                    }
+                    else{
+                        GM_SETTINGS.blockTextArrayUserCode.splice(userIndex, 1);
+                        GM_setting.save();
+                        alert("메모가 삭제되었습니다. 새로고침 한 이후부터 적용됩니다.");
+                    }
                 }
                 else{
-                    GM_SETTINGS.blockTextArrayUserCode[userIndex] = [MemberCode, Nick, confirmed, String(prevblock)];
+                    if(userIndex === -1){
+                        GM_SETTINGS.blockTextArrayUserCode.push([MemberCode, Nick, confirmed, String(prevblock)]);
+                    }
+                    else{
+                        GM_SETTINGS.blockTextArrayUserCode[userIndex] = [MemberCode, Nick, confirmed, String(prevblock)];
+                    }
+                    GM_setting.save();
+                    alert(`메모 저장 됨. 새로고침 한 이후부터 적용됩니다. Memo: ${confirmed}`);
                 }
-                GM_setting.save();
-                alert(`메모 저장 됨. 새로고침 한 이후부터 적용됩니다. Memo: ${confirmed}`);
             }
             else{
                 //alert("취소 됨");
@@ -686,6 +707,13 @@
             var userName = $userName.text().replace(/^ \/ /,"");
             var userCode = -1;
             
+            if(GM_SETTINGS.kk){
+                if(categoryText.indexOf("크킹") !== -1){
+                    title = "[크킹]" + title;
+                    $title.html(`<span>[크킹]</span>` + $title.html());
+                }
+            }
+
             var input = {
                 "pathname" : pathname,
                 "$v" : $v,
@@ -699,6 +727,7 @@
                 "categoryText" : categoryText,
                 "isBest" : isBest
             };
+
             return control(input);
         }
         catch(e){
@@ -790,6 +819,11 @@
             modifiedMemo = modifiedMemo.substr(0,13) + "...";
         }
         var appendedText = "";
+
+        // 메모 내용이 없는 경우 return
+        if(modifiedMemo === ""){
+            return;
+        }
         
         // if(GM_SETTINGS.boardBlockUserCodeBoardListFullMemo){
         //     appendedText = `<div data-tooltip-text="${savedMemo}" class='fmbmemo fullMemo'> (${modifiedMemo})</div>`;
